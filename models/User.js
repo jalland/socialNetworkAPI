@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const assignmentSchema = require('./Assignment');
 
-// Schema to create Student model
+// Schema to create User model
 const userSchema = new Schema(
   {
     username: {
@@ -43,7 +43,7 @@ const userSchema = new Schema(
   }
 );
 
-// Create a virtual property `commentCount` that gets the amount of comments per post
+// Create a virtual property `friendCount` that gets the amount of friends per user
 userSchema.virtual('friendCount').get(function () {
   return this.friends.length;
 });

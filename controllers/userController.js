@@ -6,12 +6,6 @@ module.exports = {
   async getUsers(req, res) {
     try {
       const users = await User.find();
-
-      // const userObj = {
-      //   users,
-      //   headCount: await headCount(),
-      // };
-
       res.json(users);
     } catch (err) {
       console.log(err);
@@ -45,16 +39,12 @@ module.exports = {
   // Delete a user and remove them from the thought
   async deleteUser(req, res) {
     try {
-      //delete thoughts associated with user
-
       const user = await User.findOneAndRemove({ _id: req.params.userId }).populate('thoughts');
-
       if (user) {
         for (const thoughtId of user.thoughts) {
           await Thought.findByIdAndDelete(thoughtId);
       }
       }
-      
       res.json({ message: 'User and associated thoughts deleted' });
     } catch (err) {
       console.log(err);
@@ -62,7 +52,7 @@ module.exports = {
     }
   },
 
-  // Update username to a user
+  // Update to a user
   async updateUser(req, res) {
     try {
       const user = await User.findOneAndUpdate(
@@ -81,6 +71,7 @@ module.exports = {
     }
   },
   
+  //Add a friend to a user's friend list
   async addFriend(req, res){
     try {
       const user = await User.findOneAndUpdate(
@@ -100,7 +91,7 @@ module.exports = {
     }
   },
 
-  //delete friend
+  //delete a friend from a user's friend list
   async deleteFriend(req, res){
     try {
       const user = await User.findOneAndUpdate(

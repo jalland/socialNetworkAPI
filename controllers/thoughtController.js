@@ -4,7 +4,6 @@ module.exports = {
   // Get all thoughts
   async getThoughts(req, res) {
     try {
-      //const thoughts = await Thought.find().populate('users');
       const thoughts = await Thought.find();
       res.json(thoughts);
     } catch (err) {
@@ -29,8 +28,6 @@ module.exports = {
   // Create a thought
   async createThought(req, res) {
     try {
-      // create the thought
-    // Create the thought
     const thought = await Thought.create(req.body);
 
     // Find the user and update their thoughts array
@@ -79,7 +76,7 @@ module.exports = {
       res.status(500).json(err);
     }
   },
-
+ //Add a reaction to a thought
   async addReaction(req, res){
     try {
       const thought = await Thought.findOneAndUpdate(
@@ -99,7 +96,7 @@ module.exports = {
     }
   },
 
-  //delete reaction
+  //delete a reaction from a thought
 async deleteReaction(req, res){
   try {
     const thought = await Thought.findOneAndUpdate(
