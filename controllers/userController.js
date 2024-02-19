@@ -30,12 +30,12 @@ module.exports = {
     try {
       const users = await User.find();
 
-      const userObj = {
-        users,
-        headCount: await headCount(),
-      };
+      // const userObj = {
+      //   users,
+      //   headCount: await headCount(),
+      // };
 
-      res.json(userObj);
+      res.json(users);
     } catch (err) {
       console.log(err);
       return res.status(500).json(err);
@@ -97,16 +97,15 @@ module.exports = {
     }
   },
 
-  // Add an assignment to a user
-  async addAssignment(req, res) {
-    console.log('You are adding an assignment');
-    console.log(req.body);
+  // Update username to a user
+  async updateUser(req, res) {
+
 
     try {
       const user = await User.findOneAndUpdate(
         { _id: req.params.userId },
-        { $addToSet: { assignments: req.body } },
-        { runValidators: true, new: true }
+        { $set: req.body },
+        {new: true}
       );
 
       if (!user) {
@@ -140,4 +139,26 @@ module.exports = {
       res.status(500).json(err);
     }
   },
+
+  async addFriend(req, res){
+    try {
+      const user = await User.findOneAndUpdate(
+        { _id: req.params.userId },
+        { $push: { friends: req.params.friendId } },
+        { runValidators: true, new: true }
+      );
+
+      if (!user) {
+        res.status(404).json({ message: 'No user with this id!' });
+      }
+
+      res.json(user);
+      
+    } catch (error) {
+      res.status(500).json(err);
+    }
+  }
+
 };
+
+

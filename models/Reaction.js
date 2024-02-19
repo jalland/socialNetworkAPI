@@ -1,10 +1,9 @@
 const { Schema, model } = require('mongoose');
-const reactionSchema = require('./Reaction');
 
 // Schema to create a course model
-const thoughtSchema = new Schema(
+const reactionSchema = new Schema(
   {
-    thoughtText: {
+    reactionBody: {
       type: String,
       required: true,
       maxlength: 280,
@@ -19,9 +18,6 @@ const thoughtSchema = new Schema(
       type: String,
       required: true,
     },
-    reactions: [
-     reactionSchema
-    ],
   },
   {
     toJSON: {
@@ -31,11 +27,5 @@ const thoughtSchema = new Schema(
   }
 );
 
-// Create a virtual property `commentCount` that gets the amount of comments per post
-thoughtSchema.virtual('reactionCount').get(function () {
-  return this.reactions.length;
-});
 
-const Thought = model('Thought', thoughtSchema);
-
-module.exports = Thought;
+module.exports = reactionSchema;
