@@ -2,14 +2,13 @@
 
 ## Description
 
-This application uses a NoSQL database, specifically MongoDb, with Mongoose, to create a Social Media API. A new user can be added, thoughts can be added to a user, and reactions can be added to thoughts. The API allows for all CRUD (Create, Read, Update, Delete) operations. 
+This application uses a NoSQL database, specifically MongoDB, with Mongoose, to create a Social Media API. With this API, a new user can be added, thoughts can be added to a user, and reactions can be added to thoughts. The API allows for all CRUD (Create, Read, Update, Delete) operations. 
 
 ## Github code
 https://github.com/jalland/socialNetworkAPI 
 
 
 ## Link to Video Demonstration
-Note that I had a bit of trouble at the end of the video with the adding/deleting reaction because I had the wrong ID values. I fixed them in the video so it would work. 
 https://drive.google.com/file/d/185Tzv1QgFI-m8jsZTOKTyHpbZH-WfPmH/view
 
 ## User Story
